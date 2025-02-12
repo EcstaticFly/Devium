@@ -14,9 +14,9 @@ http.route({
     if (!webhookSecret) {
       throw new Error("Missing CLERK_WEBHOOK_SECRET environment variable");
     }
-    const svix_id = request.headers.get("svix_id");
-    const svix_signature = request.headers.get("svix_signature");
-    const svix_timestamp = request.headers.get("svix_timestamp");
+    const svix_id = request.headers.get("svix-id");
+    const svix_signature = request.headers.get("svix-signature");
+    const svix_timestamp = request.headers.get("svix-timestamp");
 
     if (!svix_id || !svix_signature || !svix_timestamp) {
       return new Response("Error occured -- no svix headers", {
@@ -26,15 +26,17 @@ http.route({
 
     const payload = await request.json();
     const body = JSON.stringify(payload);
+
     const wh = new Webhook(webhookSecret);
     let evt: WebhookEvent;
 
+
     try {
-      evt = (await wh.verify(body, {
-        svix_id: svix_id,
-        svix_signature: svix_signature,
-        svix_timestamp: svix_timestamp,
-      })) as WebhookEvent;
+      evt = wh.verify(body, {
+        "svix-id": svix_id,
+        "svix-timestamp": svix_timestamp,
+        "svix-signature": svix_signature,
+      }) as WebhookEvent;
     } catch (err) {
       console.error("Error verifying webhook:", err);
       return new Response("Error occured", { status: 400 });
@@ -49,9 +51,9 @@ http.route({
 
       try {
         await ctx.runMutation(api.users.syncUser, {
-          userId: id,
-          email,
-          name
+            userId: id,
+            email,
+            name,
         });
       } catch (err) {
         console.error("Error creating user:", err);
