@@ -11,9 +11,11 @@ http.route({
   method: "POST",
   handler: httpAction(async (ctx, request) => {
     const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
+
     if (!webhookSecret) {
       throw new Error("Missing CLERK_WEBHOOK_SECRET environment variable");
     }
+
     const svix_id = request.headers.get("svix-id");
     const svix_signature = request.headers.get("svix-signature");
     const svix_timestamp = request.headers.get("svix-timestamp");
@@ -29,7 +31,6 @@ http.route({
 
     const wh = new Webhook(webhookSecret);
     let evt: WebhookEvent;
-
 
     try {
       evt = wh.verify(body, {
@@ -51,9 +52,9 @@ http.route({
 
       try {
         await ctx.runMutation(api.users.syncUser, {
-            userId: id,
-            email,
-            name,
+          userId: id,
+          email,
+          name,
         });
       } catch (err) {
         console.error("Error creating user:", err);
