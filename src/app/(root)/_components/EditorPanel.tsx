@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Editor } from "@monaco-editor/react";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
-import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
+import { EditorPanelSkeleton } from "./_skeletons/EditorPanelSkeleton";
 import useMounted from "@/hooks/useMounted";
 
 function EditorPanel() {

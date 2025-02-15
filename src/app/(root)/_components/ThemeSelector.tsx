@@ -14,7 +14,7 @@ import {
   Sun,
 } from "lucide-react";
 import useMounted from "@/hooks/useMounted";
-import { HeaderButtonSkeleton } from "./HeaderButtonSkeleton";
+import { HeaderButtonSkeleton } from "./_skeletons/HeaderButtonSkeleton";
 
 const THEME_ICONS: Record<string, React.ReactNode> = {
   "vs-dark": <Moon className="size-4" />,
