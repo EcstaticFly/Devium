@@ -12,6 +12,7 @@
   "dependencies": {
     "@clerk/nextjs": "^6.11.2",
     "@monaco-editor/react": "^4.6.0",
+    "axios": "^1.7.9",
     "convex": "^1.19.1",
     "framer-motion": "^12.4.2",
     "lucide-react": "^0.475.0",
