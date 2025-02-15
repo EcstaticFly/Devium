@@ -41,10 +41,10 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
     getCode: () => get().editor?.getValue() || "",
 
-    setEditor: (editor: Monaco) => {
+    setEditor: (editor: Monaco | null) => {
       const savedCode = localStorage.getItem(`editor-code-${get().language}`);
       if (savedCode) {
-        editor.setValue(savedCode);
+        editor?.setValue(savedCode);
       }
 
       set({ editor });
