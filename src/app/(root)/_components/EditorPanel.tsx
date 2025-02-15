@@ -8,9 +8,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Editor } from "@monaco-editor/react";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
+import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
+import useMounted from "@/hooks/useMounted";
 
 function EditorPanel() {
   const clerk = useClerk();
+  const mounted = useMounted();
   const [isShareDialogOpen, setIsShareDialogOpen] = useState(false);
   const { language, editor, theme, fontSize, setFontSize, setEditor } =
     useCodeEditorStore();
@@ -31,6 +34,10 @@ function EditorPanel() {
   const handleEditorChange = () => {};
 
   const handleFontSizeChange = (newSize: number) => {};
+
+  if(!mounted) {
+    return null;
+  }
 
   return (
     <div className="relative">
