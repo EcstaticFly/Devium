@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ConvexClientProvider from "@/components/providers/convexClientProvider";
 import Footer from "@/components/Footer";
+import { Flip, ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,16 @@ export default function RootLayout({
           min-h-screen bg-gradient-to-b from-gray-900 to-gray-950 text-gray-100 flex flex-col`}
         >
           <ConvexClientProvider>{children}</ConvexClientProvider>
+          <ToastContainer
+            position="top-center"
+            pauseOnHover={false}
+            closeOnClick={false}
+            autoClose={3000}
+            closeButton={false}
+            hideProgressBar={true}
+            theme="light"
+            transition={Flip}
+          />
           <Footer />
         </body>
       </html>
