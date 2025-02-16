@@ -166,3 +166,8 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     },
   };
 });
+
+export const getExecutionResult = () => { 
+  //to get updated execution result, before saving it to db
+  return useCodeEditorStore.getState().executionResult;
+};
