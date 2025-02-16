@@ -41,10 +41,10 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
     getCode: () => get().editor?.getValue() || "",
 
-    setEditor: (editor: Monaco | null) => {
+    setEditor: (editor: Monaco) => {
       const savedCode = localStorage.getItem(`editor-code-${get().language}`);
       if (savedCode) {
-        editor?.setValue(savedCode);
+        editor.setValue(savedCode);
       }
 
       set({ editor });
@@ -60,16 +60,16 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
       set({ fontSize });
     },
 
-    setLanguage: (language: string) => {
+    setLanguage: (lang: string) => {
       const currentCode = get().editor?.getValue(); // get current code from editor
 
       if (currentCode) {
         // if there's code in the editor
-        localStorage.setItem(`editor-code-${language}`, currentCode); // save code in local storage
+        localStorage.setItem(`editor-code-${get().language}`, currentCode); // save code in local storage
       }
 
-      localStorage.setItem("editor-language", language); //then switch to new language
-      set({ language, output: "", error: null });
+      localStorage.setItem("editor-language", lang); //then switch to new language
+      set({ language: lang, output: "", error: null });
     },
 
     runCode: async () => {

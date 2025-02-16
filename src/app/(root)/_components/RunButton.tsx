@@ -2,16 +2,30 @@
 
 import { useCodeEditorStore } from "@/store/useCodeEditorStore";
 import { useUser } from "@clerk/nextjs";
+import { useMutation } from "convex/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2Icon, PlayIcon } from "lucide-react";
+import { api } from "../../../../convex/_generated/api";
 
 function RunButton() {
   const { user } = useUser();
+  const saveExecution = useMutation(api.codeExecutions.saveCodeExecutions);
   const { runCode, language, isRunning, executionResult } =
     useCodeEditorStore();
 
   const handleRunCode = async () => {
-    
+    await runCode();
+
+    if (user && executionResult) {
+      // Save the code execution
+      await saveExecution({
+        code: executionResult.code,
+        language,
+        output: executionResult.output || undefined,
+        error: executionResult.error || undefined,
+      })
+
+    }
   };
   return (
     <motion.button
