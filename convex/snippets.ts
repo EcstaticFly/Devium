@@ -34,6 +34,7 @@ export const createSnippet = mutation({
   },
 });
 
+
 export const getSnippets = query({
   handler: async (ctx) => {
     const allSnippets = await ctx.db.query("snippets").order("desc").collect();
@@ -41,6 +42,7 @@ export const getSnippets = query({
     return allSnippets;
   },
 });
+
 
 export const checkStarsOnSnippet = query({
   args: {
@@ -63,5 +65,22 @@ export const checkStarsOnSnippet = query({
       .first();
 
       return !!star; //star itself is an object, !!star is boolean
+  },
+});
+
+
+export const getStarCountOnSnippet = query({
+  args: {
+    snippetId: v.id("snippets"),
+  },
+
+  handler: async (ctx, args) => {
+    const starCount = await ctx.db
+      .query("stars")
+      .withIndex("by_snippet_id")
+      .filter((q) => q.eq(q.field("snippetId"), args.snippetId))
+      .collect();
+
+    return starCount.length;
   },
 });
