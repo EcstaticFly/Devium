@@ -27,7 +27,7 @@ function NavigationHeader() {
                   Devium
                 </span>
                 <span className="block text-xs text-blue-400/60 font-medium">
-                Code. Create. Conquer.
+                  Code. Create. Conquer.
                 </span>
               </div>
             </Link>
