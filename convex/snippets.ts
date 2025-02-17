@@ -1,5 +1,5 @@
 import { ConvexError, v } from "convex/values";
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
 export const createSnippet = mutation({
   args: {
@@ -31,5 +31,37 @@ export const createSnippet = mutation({
     });
 
     return snippetId;
+  },
+});
+
+export const getSnippets = query({
+  handler: async (ctx) => {
+    const allSnippets = await ctx.db.query("snippets").order("desc").collect();
+
+    return allSnippets;
+  },
+});
+
+export const checkStarsOnSnippet = query({
+  args: {
+    snippetId: v.id("snippets"),
+  },
+
+  handler: async (ctx, args) => {
+    const user = await ctx.auth.getUserIdentity();
+    if (!user) {
+      return false;
+    }
+    const star = await ctx.db
+      .query("stars")
+      .withIndex("by_user_id_and_snippet_id")
+      .filter(
+        (q) =>
+          q.eq(q.field("userId"), user.subject) &&
+          q.eq(q.field("snippetId"), args.snippetId)
+      )
+      .first();
+
+      return !!star; //star itself is an object, !!star is boolean
   },
 });
