@@ -34,6 +34,51 @@ export const createSnippet = mutation({
   },
 });
 
+export const deleteSnippet = mutation({
+  args: {
+    snippetId: v.id("snippets"),
+  },
+
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new ConvexError("Unauthenticated");
+    }
+
+    const snippet = await ctx.db.get(args.snippetId);
+
+    if (!snippet) {
+      throw new ConvexError("Snippet not found");
+    }
+
+    if (snippet.userId !== identity.subject) {
+      throw new ConvexError("Unauthorized");
+    }
+
+    const commentsOnTheSnippet = await ctx.db
+      .query("snippetComments")
+      .withIndex("by_snippet_id")
+      .filter((q) => q.eq(q.field("snippetId"), args.snippetId))
+      .collect();
+
+    for (const comment of commentsOnTheSnippet) {
+      await ctx.db.delete(comment._id);
+    }
+
+    const starsOnTheSnippet = await ctx.db
+      .query("stars")
+      .withIndex("by_snippet_id")
+      .filter((q) => q.eq(q.field("snippetId"), args.snippetId))
+      .collect();
+
+    for (const star of starsOnTheSnippet) {
+      await ctx.db.delete(star._id);
+    }
+
+    await ctx.db.delete(args.snippetId);
+  },
+});
+
 export const getSnippets = query({
   handler: async (ctx) => {
     const allSnippets = await ctx.db.query("snippets").order("desc").collect();

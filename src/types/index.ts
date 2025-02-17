@@ -55,7 +55,7 @@ export interface CodeEditorState {
   runCode: () => Promise<void>;
 }
 
-export interface Snippet {
+export interface SnippetCardProps {
   _id: Id<"snippets">;
   _creationTime: number;
   userId: string;

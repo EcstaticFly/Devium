@@ -5,7 +5,7 @@ import { api } from "../../../convex/_generated/api";
 import { useState } from "react";
 import NavigationHeader from "../../components/NavigationHeader";
 import SnippetsPageSkeleton from "./_components/_skeletons/SnippetsPageSkeleton";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   BookOpenIcon,
   GridIcon,
@@ -14,6 +14,7 @@ import {
   TagIcon,
   X,
 } from "lucide-react";
+import SnippetCard from "./_components/SnippetCard";
 
 export default function SnippetsPage() {
   const allSnippets = useQuery(api.snippets.getSnippets);
@@ -42,7 +43,7 @@ export default function SnippetsPage() {
     const languageMatch = selectedLanguage
       ? snippet.language === selectedLanguage
       : true; //if no selected language, return all snippets
-    
+
     return searchMatch && languageMatch;
   });
 
@@ -166,7 +167,20 @@ export default function SnippetsPage() {
           </div>
         </div>
 
-        
+        <motion.div
+          className={`grid gap-6 
+            ${
+              view === "grid"
+                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                : "grid-cols-1 max-w-3xl mx-auto"
+            }`}
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredSnippets.map((snippet) => (
+              <SnippetCard key={snippet._id} snippet={snippet} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </div>
   );
