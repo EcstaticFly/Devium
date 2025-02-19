@@ -133,13 +133,12 @@ export const addComment = mutation({
       throw new ConvexError("User not found");
     }
 
-    const commentId = await ctx.db.insert("snippetComments", {
+    return await ctx.db.insert("snippetComments", {
       userId: identity.subject,
       userName: user.name,
       ...args,
     });
 
-    return commentId;
   },
 });
 
@@ -156,11 +155,11 @@ export const deleteComment = mutation({
 
     const comment = await ctx.db.get(args.commentId);
 
-    if(!comment){
+    if (!comment) {
       throw new ConvexError("Comment not found");
     }
 
-    if(comment.userId !== identity.subject){
+    if (comment.userId !== identity.subject) {
       throw new ConvexError("Unauthorized request");
     }
 

@@ -78,3 +78,8 @@ export interface CommentProps {
   isDeleting: boolean;
   currentUserId?: string;
 }
+
+export interface CommentFormProps {
+  onSubmit: (comment: string) => Promise<void>;
+  isAdding: boolean;
+}

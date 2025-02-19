@@ -1,3 +1,5 @@
+"use client";
+
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { Id } from "../../../../../convex/_generated/dataModel";
 import { useState } from "react";
@@ -5,11 +7,12 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 import { toast } from "react-toastify";
 import { MessageSquare } from "lucide-react";
-import Comment from "./Comment";
+import IndividualComment from "./IndividualComment";
+import CommentForm from "./CommentForm";
 
 export default function Comments({ snippetId }: { snippetId: Id<"snippets"> }) {
   const { user } = useUser();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
   const [deletingCommentId, setDeletingCommentId] = useState<string | null>(
     null
   );
@@ -22,7 +25,7 @@ export default function Comments({ snippetId }: { snippetId: Id<"snippets"> }) {
   const deleteComment = useMutation(api.snippets.deleteComment);
 
   const handleAddComment = async (content: string) => {
-    setIsSubmitting(true);
+    setIsAdding(true);
     try {
       await addComment({
         snippetId,
@@ -33,7 +36,7 @@ export default function Comments({ snippetId }: { snippetId: Id<"snippets"> }) {
       console.error("Error occured while adding Comment: ", e);
       toast.error("Failed to add comment");
     } finally {
-      setIsSubmitting(false);
+      setIsAdding(false);
     }
   };
 
@@ -60,7 +63,10 @@ export default function Comments({ snippetId }: { snippetId: Id<"snippets"> }) {
       </div>
       <div className="p-6 sm:p-8">
         {user ? (
-          <div className="">"Comments"</div>
+            <CommentForm 
+                onSubmit={handleAddComment}
+                isAdding={isAdding}
+            />
         ) : (
           <div className="bg-[#0a0a0f] rounded-xl p-6 text-center mb-8 border border-[#ffffff0a]">
             <p className="text-[#808086] mb-4">
@@ -77,7 +83,7 @@ export default function Comments({ snippetId }: { snippetId: Id<"snippets"> }) {
         <div className="space-y-6">
             {
                 comments?.map((comment) => (
-                    <Comment
+                    <IndividualComment
                         key={comment._id}
                         comment = {comment}
                         onDelete = {handleDeleteComment}
