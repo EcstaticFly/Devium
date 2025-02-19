@@ -29,6 +29,7 @@ export default function SnippetDetailsPage() {
     <div className="min-h-screen bg-[#0a0a0f]">
       <NavigationHeader />
       <main className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
+        <div className="max-w-[1200px] mx-auto">
         <div
           className="bg-[#121218] border border-[#ffffff0a] rounded-xl
             p-6 sm:p-8 mb-6 backdrop-blur-xl"
@@ -110,6 +111,9 @@ export default function SnippetDetailsPage() {
               fontLigatures: true,
             }}
           />
+        </div>
+
+        <Comments snippetId={snippet._id as Id<"snippets">} />
         </div>
       </main>
     </div>
