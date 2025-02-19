@@ -1,5 +1,6 @@
 import { CommentProps } from "@/types";
 import { Trash2Icon, UserIcon } from "lucide-react";
+import CommentContent from "./CommentContent";
 
 export default function IndividualComment({
   comment,
@@ -35,7 +36,7 @@ export default function IndividualComment({
           )}
         </div>
 
-        {comment.content}
+        <CommentContent content={comment.content}/>
       </div>
     </div>
   );

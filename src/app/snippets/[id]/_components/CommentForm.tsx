@@ -3,12 +3,23 @@
 import { CommentFormProps } from "@/types";
 import { CodeIcon, SendIcon } from "lucide-react";
 import { useState } from "react";
+import CommentContent from "./CommentContent";
 
 export default function CommentForm({ onSubmit, isAdding }: CommentFormProps) {
   const [comment, setComment] = useState("");
   const [isPreview, setIsPreview] = useState(false);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {};
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key == "Tab") {
+      e.preventDefault();
+      const start = e.currentTarget.selectionStart;
+      const end = e.currentTarget.selectionEnd;
+      const newComment =
+        comment.substring(0, start) + "  " + comment.substring(end);
+      setComment(newComment);
+      e.currentTarget.selectionStart = e.currentTarget.selectionEnd = start + 2;
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,11 +50,14 @@ export default function CommentForm({ onSubmit, isAdding }: CommentFormProps) {
 
         {isPreview ? (
           <div className="min-h-[120px] p-4 text-[#e1e1e3]">
-            "comment content"
+            <CommentContent content={comment} />
           </div>
         ) : (
           <textarea
             value={comment}
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
             onChange={(e) => setComment(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Add to the discussion..."
@@ -56,7 +70,7 @@ export default function CommentForm({ onSubmit, isAdding }: CommentFormProps) {
           <div className="hidden sm:block text-xs text-[#808086] space-y-1">
             <div className="flex items-center gap-2">
               <CodeIcon className="size-3.5" />
-              <span>Format code with ```language</span>
+              <span>Format code with ```language[no space]</span>
             </div>
             <div className="text-[#808086]/60 pl-5">
               Tab key inserts spaces • Preview your comment before posting
