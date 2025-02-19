@@ -93,18 +93,79 @@ export const starSnippet = mutation({
     const isAlreadyStared = await ctx.db
       .query("stars")
       .withIndex("by_user_id_and_snippet_id")
-      .filter((q) => q.eq(q.field("userId"), identity.subject) && q.eq(q.field("snippetId"), args.snippetId))
+      .filter(
+        (q) =>
+          q.eq(q.field("userId"), identity.subject) &&
+          q.eq(q.field("snippetId"), args.snippetId)
+      )
       .first();
 
     if (isAlreadyStared) {
       await ctx.db.delete(isAlreadyStared._id);
-    }else{
+    } else {
       await ctx.db.insert("stars", {
         userId: identity.subject,
         snippetId: args.snippetId,
       });
     }
-  }
+  },
+});
+
+export const addComment = mutation({
+  args: {
+    snippetId: v.id("snippets"),
+    content: v.string(),
+  },
+
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new ConvexError("Unauthenticated");
+    }
+
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_user_id")
+      .filter((q) => q.eq(q.field("userId"), identity.subject))
+      .first();
+
+    if (!user) {
+      throw new ConvexError("User not found");
+    }
+
+    const commentId = await ctx.db.insert("snippetComments", {
+      userId: identity.subject,
+      userName: user.name,
+      ...args,
+    });
+
+    return commentId;
+  },
+});
+
+export const deleteComment = mutation({
+  args: {
+    commentId: v.id("snippetComments"),
+  },
+
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new ConvexError("Unauthenticated");
+    }
+
+    const comment = await ctx.db.get(args.commentId);
+
+    if(!comment){
+      throw new ConvexError("Comment not found");
+    }
+
+    if(comment.userId !== identity.subject){
+      throw new ConvexError("Unauthorized request");
+    }
+
+    await ctx.db.delete(args.commentId);
+  },
 });
 
 export const getSnippets = query({
