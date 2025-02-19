@@ -64,3 +64,17 @@ export interface SnippetCardProps {
   title: string;
   userName: string;
 }
+
+export interface CommentProps {
+  comment: {
+    _id: Id<"snippetComments">;
+    _creationTime: number;
+    userId: string;
+    userName: string;
+    snippetId: Id<"snippets">;
+    content: string;
+  };
+  onDelete: (commentId: Id<"snippetComments">) => void;
+  isDeleting: boolean;
+  currentUserId?: string;
+}
