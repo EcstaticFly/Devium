@@ -138,7 +138,6 @@ export const addComment = mutation({
       userName: user.name,
       ...args,
     });
-
   },
 });
 
@@ -243,5 +242,26 @@ export const getStarCountOnSnippet = query({
       .collect();
 
     return starCount.length;
+  },
+});
+
+export const getStarredSnippets = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      return [];
+    }
+
+    const starsGivenByUser = await ctx.db
+      .query("stars")
+      .withIndex("by_user_id")
+      .filter((q) => q.eq(q.field("userId"), identity.subject))
+      .collect(); 
+
+    const snippets = await Promise.all(
+      starsGivenByUser.map((star) => ctx.db.get(star.snippetId))
+    );
+
+    return snippets.filter((snippet) => snippet !== null);
   },
 });
