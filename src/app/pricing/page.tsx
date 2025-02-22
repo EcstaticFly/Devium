@@ -8,6 +8,8 @@ import { Star } from "lucide-react";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import FeatureCategory from "./_components/FeatureCategory";
 import FeatureItem from "./_components/FeatureItem";
+import UpgradeButton from "./_components/UpgradeButton";
+import LoginButton from "../../components/LoginButton";
 
 export default async function PricingPage() {
   const user = await currentUser();
