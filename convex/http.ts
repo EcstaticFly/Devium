@@ -93,12 +93,12 @@ http.route({
           email: data.attributes.user_email,
           proSubscriptionCustomerId: data.attributes.customer_id.toString(),
           proSubscriptionOrderId: data.id,
-          amount: data.attributes.total,
-        });
+        }); 
+        //amount: data.attributes.total, (optional to add, as it is fixed and not really necessary), will also have to update schema then.
 
         if (success) {
           //maybe send a welcome email or something
-          //receipt is already send so, don't know what to send
+          //receipt is already send so, don't know what to sends
         }
       }
 

@@ -8,6 +8,7 @@ import SnippetsPageSkeleton from "./_components/_skeletons/SnippetsPageSkeleton"
 import { AnimatePresence, motion } from "framer-motion";
 import {
   BookOpenIcon,
+  Code,
   GridIcon,
   LayersIcon,
   SearchIcon,
@@ -174,7 +175,7 @@ export default function SnippetsPage() {
                 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
                 : "grid-cols-1 max-w-3xl mx-auto"
             }`}
-            layout
+          layout
         >
           <AnimatePresence mode="popLayout">
             {filteredSnippets.map((snippet) => (
@@ -182,6 +183,45 @@ export default function SnippetsPage() {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {filteredSnippets.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative max-w-md mx-auto mt-20 p-8 rounded-2xl overflow-hidden"
+          >
+            <div className="text-center">
+              <div
+                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br 
+                from-blue-500/10 to-purple-500/10 ring-1 ring-white/10 mb-6"
+              >
+                <Code className="size-8 text-gray-400" />
+              </div>
+              <h3 className="text-xl font-medium text-white mb-3">
+                No snippets found
+              </h3>
+              <p className="text-gray-400 mb-6">
+                {searchQuery || selectedLanguage
+                  ? "Try adjusting your search query or filters"
+                  : "Be the first to share a code snippet with the community"}
+              </p>
+
+              {(searchQuery || selectedLanguage) && (
+                <button
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedLanguage(null);
+                  }}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#262637] text-gray-300 hover:text-white rounded-lg 
+                    transition-colors"
+                >
+                  <X className="size-4" />
+                  Clear all filters
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );

@@ -30,7 +30,6 @@ export const upgradeToPro = mutation({
     email: v.string(),
     proSubscriptionCustomerId: v.string(),
     proSubscriptionOrderId: v.string(),
-    amount: v.number(),
   },
 
   handler: async (ctx, args) => {
