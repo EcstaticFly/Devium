@@ -1,0 +1,19 @@
+<svg
+                className="size-6 text-blue-400 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="200" height="200" rx="30" fill="#1E1E2E" />
+                <text
+                  x="50%"
+                  y="55%"
+                  font-family="Arial, sans-serif"
+                  font-size="150"
+                  font-weight="bold"
+                  fill="#4DB6AC"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                >
+                  D
+                </text>
+              </svg>
