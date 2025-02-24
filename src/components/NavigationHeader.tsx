@@ -1,6 +1,6 @@
 import HeaderProfileButton from "@/app/(root)/_components/HeaderProfileButton";
 import { SignedOut } from "@clerk/nextjs";
-import { Blocks, Code2, Sparkles } from "lucide-react";
+import { Code2, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 function NavigationHeader() {

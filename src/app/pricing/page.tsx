@@ -1,5 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { ConvexClient, ConvexHttpClient } from "convex/browser";
+import { ConvexHttpClient } from "convex/browser";
 import { api } from "../../../convex/_generated/api";
 import ProPlanView from "./_components/ProPlanView";
 import NavigationHeader from "@/components/NavigationHeader";

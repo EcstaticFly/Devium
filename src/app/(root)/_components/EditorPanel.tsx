@@ -4,7 +4,7 @@ import { useCodeEditorStore } from "@/store/useCodeEditorStore";
 import { useEffect, useState } from "react";
 import { defineMonacoThemes, LANGUAGE_CONFIG } from "../_constants";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Editor } from "@monaco-editor/react";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";

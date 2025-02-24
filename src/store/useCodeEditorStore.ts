@@ -150,15 +150,11 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
             error: null,
           },
         });
-      } catch (err: any) {
-        console.log("Error running code: ", err);
+      } catch (error) {
+        console.log("Error running code:", error);
         set({
-          error: err.message,
-          executionResult: {
-            code,
-            output: "",
-            error: err.message,
-          },
+          error: "Error running code",
+          executionResult: { code, output: "", error: "Error running code" },
         });
       } finally {
         set({ isRunning: false });
