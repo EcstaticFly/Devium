@@ -16,7 +16,11 @@ function NavigationHeader() {
               group-hover:opacity-100 transition-all duration-500 blur-xl"
               />
               <div className="relative bg-gradient-to-br from-[#1a1a2e] to-[#0a0a0f] p-2 rounded-xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all">
-              <img src="/Devium-logo.svg" alt="devium-logo" className="size-6 text-blue-400 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500" />
+                <img
+                  src="/Devium-logo.svg"
+                  alt="devium-logo"
+                  className="size-6 text-blue-400 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500"
+                />
               </div>
 
               <div className="relative hidden sm:block">

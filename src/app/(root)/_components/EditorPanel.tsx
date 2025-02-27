@@ -79,47 +79,47 @@ function EditorPanel() {
           </div>
           <div className="flex flex-col md:flex-row items-center gap-3">
             <div className="flex flex-row items-center gap-3">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleRefresh}
-              className="p-2 bg-[#1e1e2e] hover:bg-[#2a2a3a] rounded-lg ring-1 ring-white/5 transition-colors"
-              aria-label="Reset to default code"
-            >
-              <RotateCcwIcon className="size-4 text-gray-400" />
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleRefresh}
+                className="p-2 bg-[#1e1e2e] hover:bg-[#2a2a3a] rounded-lg ring-1 ring-white/5 transition-colors"
+                aria-label="Reset to default code"
+              >
+                <RotateCcwIcon className="size-4 text-gray-400" />
+              </motion.button>
 
-            <div className="flex items-center gap-3 px-3 py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
-              <TypeIcon className="size-4 text-gray-400" />
-              <div className="flex items-center gap-3">
-                <input
-                  type="range"
-                  min="12"
-                  max="24"
-                  value={fontSize}
-                  onChange={(e) =>
-                    handleFontSizeChange(parseInt(e.target.value))
-                  }
-                  className="w-20 h-1 bg-gray-600 rounded-lg cursor-pointer"
-                />
-                <span className="text-sm font-medium text-gray-400 min-w-[2rem] text-center">
-                  {fontSize}
-                </span>
+              <div className="flex items-center gap-3 px-3 py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
+                <TypeIcon className="size-4 text-gray-400" />
+                <div className="flex items-center gap-3">
+                  <input
+                    type="range"
+                    min="12"
+                    max="24"
+                    value={fontSize}
+                    onChange={(e) =>
+                      handleFontSizeChange(parseInt(e.target.value))
+                    }
+                    className="w-20 h-1 bg-gray-600 rounded-lg cursor-pointer"
+                  />
+                  <span className="text-sm font-medium text-gray-400 min-w-[2rem] text-center">
+                    {fontSize}
+                  </span>
+                </div>
               </div>
-            </div>
             </div>
 
             <div className="">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setIsShareDialogOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg overflow-hidden bg-gradient-to-r
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setIsShareDialogOpen(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg overflow-hidden bg-gradient-to-r
                from-blue-500 to-blue-600 opacity-90 hover:opacity-100 transition-opacity"
-            >
-              <ShareIcon className="size-4 text-white" />
-              <span className="text-sm font-medium text-white ">Share</span>
-            </motion.button>
+              >
+                <ShareIcon className="size-4 text-white" />
+                <span className="text-sm font-medium text-white ">Share</span>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -161,9 +161,9 @@ function EditorPanel() {
           )}
         </div>
       </div>
-      {
-        isShareDialogOpen && <ShareSnippetDialog onClose={()=>setIsShareDialogOpen(false)} />
-      }
+      {isShareDialogOpen && (
+        <ShareSnippetDialog onClose={() => setIsShareDialogOpen(false)} />
+      )}
     </div>
   );
 }
