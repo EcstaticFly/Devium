@@ -19,9 +19,9 @@ function NavigationHeader() {
               <img src="/Devium-logo.svg" alt="devium-logo" className="size-6 text-blue-400 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500" />
               </div>
 
-              <div className="relative">
+              <div className="relative hidden sm:block">
                 <span
-                  className="block text-lg font-semibold bg-gradient-to-r
+                  className="text-lg font-semibold bg-gradient-to-r
                  from-blue-400 via-blue-300 to-purple-400 text-transparent bg-clip-text"
                 >
                   Devium

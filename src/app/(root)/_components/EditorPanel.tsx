@@ -60,7 +60,7 @@ function EditorPanel() {
         className="relative bg-[#12121a]/90 backdrop-blur 
       rounded-xl border border-white/[0.05] p-6"
       >
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col md:flex-row gap-3 items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#1e1e2e] ring-1 ring-white/5">
               <Image
@@ -77,7 +77,8 @@ function EditorPanel() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col md:flex-row items-center gap-3">
+            <div className="flex flex-row items-center gap-3">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -106,7 +107,9 @@ function EditorPanel() {
                 </span>
               </div>
             </div>
+            </div>
 
+            <div className="">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -117,6 +120,7 @@ function EditorPanel() {
               <ShareIcon className="size-4 text-white" />
               <span className="text-sm font-medium text-white ">Share</span>
             </motion.button>
+            </div>
           </div>
         </div>
 
