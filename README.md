@@ -37,10 +37,13 @@ NEXT_PUBLIC_CHECKOUT_URL=your_lemonsqueezy_checkout_url
 NEXT_PAYMENT_WEBHOOK_SIGNING_SECRET=your_lemonsqueezy_webhook_secret
 ```
 
-3️⃣ **Run Docker command:**
+3️⃣ **Run Docker Command:**
 ```bash
 #To start Devium
 docker compose up --build -d
+
+#if already built once
+docker-compose up -d
 
 #To stop Devium
 docker compose down
