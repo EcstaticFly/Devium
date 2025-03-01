@@ -29,6 +29,8 @@ Devium is a **real-time, interactive code editor** that allows users to write, e
    ```
 2️⃣ **Configure environment variables:**
 ```bash
+touch .env.local
+
 #setup .env.local file:
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
 NEXT_CLERK_WEBHOOK_SECRET=your_clerk_webhook_secret
