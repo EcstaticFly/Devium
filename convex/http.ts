@@ -11,10 +11,10 @@ http.route({
   path: "/clerk-webhook",
   method: "POST",
   handler: httpAction(async (ctx, request) => {
-    const webhookSecret = process.env.CLERK_WEBHOOK_SECRET;
+    const webhookSecret = process.env.NEXT_CLERK_WEBHOOK_SECRET;
 
     if (!webhookSecret) {
-      throw new Error("Missing CLERK_WEBHOOK_SECRET environment variable");
+      throw new Error("Missing NEXT_CLERK_WEBHOOK_SECRET environment variable");
     }
 
     const svix_id = request.headers.get("svix-id");
