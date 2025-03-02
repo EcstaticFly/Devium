@@ -17,11 +17,11 @@ import useMounted from "@/hooks/useMounted";
 import { HeaderButtonSkeleton } from "./_skeletons/HeaderButtonSkeleton";
 
 const THEME_ICONS: Record<string, React.ReactNode> = {
-  "vs-dark": <Moon className="size-4" />,
-  "vs-light": <Sun className="size-4" />,
-  "github-dark": <GitCompareArrowsIcon className="size-4" />,
-  monokai: <Laptop className="size-4" />,
-  "solarized-dark": <Cloud className="size-4" />,
+  "vs-dark": <Moon className="w-4 h-4" />,
+  "vs-light": <Sun className="w-4 h-4" />,
+  "github-dark": <GitCompareArrowsIcon className="w-4 h-4" />,
+  monokai: <Laptop className="w-4 h-4" />,
+  "solarized-dark": <Cloud className="w-4 h-4" />,
 };
 
 function ThemeSelector() {
@@ -45,9 +45,7 @@ function ThemeSelector() {
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, []);
 
-  if(!mounted) return (
-    <HeaderButtonSkeleton/>
-  ); 
+  if (!mounted) return <HeaderButtonSkeleton />;
 
   return (
     <div className="relative" ref={dropDownRef}>
@@ -55,7 +53,7 @@ function ThemeSelector() {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsDialogOpen(!isDialogOpen)}
-        className="w-48 group relative flex items-center gap-2 px-4 py-2.5
+        className="w-full sm:w-48 group relative flex items-center gap-2 px-4 py-2.5
          bg-[#1e1e2e]/80 hover:bg-[#262637] 
          rounded-lg transition-all duration-200 
          border border-gray-800/50 hover:border-gray-700"
@@ -64,14 +62,14 @@ function ThemeSelector() {
           className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to bg-purple-500/5 rounded-lg
         opacity-0 group-hover:opacity-100 transition-opacity"
         />
-        <Palette className="text-gray-400 size-4 group-hover:text-gray-300 transition-colors" />
+        <Palette className="text-gray-400 w-4 h-4 group-hover:text-gray-300 transition-colors" />
 
         <span className="text-gray-300 min-w-[80px] text-left group-hover:text-white transition-colors">
           {currentTheme?.label}
         </span>
 
         <div
-          className="relative size-4 rounded-full border
+          className="relative w-4 h-4 rounded-full border
           border-gray-600 group-hover:border-gray-500 transition-colors"
           style={{ background: currentTheme?.color }}
         />
@@ -111,11 +109,11 @@ function ThemeSelector() {
                 />
 
                 <div
-                  className={`flex items-center justify-center size-8 rounded-lg
+                  className={`flex items-center justify-center w-8 h-8 rounded-lg
                   ${t.id === theme ? "bg-blue-500/10 text-blue-400" : "bg-gray-800/50 text-gray-400"}
                   group-hover:scale-110 transition-all duration-200`}
                 >
-                  {THEME_ICONS[t.id] || <CircleOff className="size-4" />}
+                  {THEME_ICONS[t.id] || <CircleOff className="w-4 h-4" />}
                 </div>
 
                 <span className="flex-1 text-left group-hover:text-white transition-colors">
@@ -123,7 +121,7 @@ function ThemeSelector() {
                 </span>
 
                 <div
-                  className="relative size-4 rounded-full border border-gray-600
+                  className="relative w-4 h-4 rounded-full border border-gray-600
                 group-hover:border-gray-500 transition-colors"
                   style={{ background: t.color }}
                 />

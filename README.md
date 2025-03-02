@@ -34,11 +34,11 @@ touch .env.local
 #setup .env.local file:
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 CLERK_SECRET_KEY=your_clerk_secret_key
-NEXT_CLERK_WEBHOOK_SECRET=your_clerk_webhook_secret
+CLERK_WEBHOOK_SECRET=your_clerk_webhook_secret
 NEXT_PUBLIC_CONVEX_URL=your_convex_url
 CONVEX_DEPLOYMENT=your_convex_deployment
 NEXT_PUBLIC_CHECKOUT_URL=your_lemonsqueezy_checkout_url
-NEXT_PAYMENT_WEBHOOK_SIGNING_SECRET=your_lemonsqueezy_webhook_secret
+PAYMENT_WEBHOOK_SIGNING_SECRET=your_lemonsqueezy_webhook_secret
 ```
 
 3️⃣ **Run Docker Command:**

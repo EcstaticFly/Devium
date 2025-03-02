@@ -21,7 +21,7 @@ async function Header() {
   return (
     <div className="relative z-10">
       <div className="flex flex-wrap items-center gap-3 lg:justify-between md:justify-center bg-[#0a0a0f]/80 backdrop-blur-xl p-4 mb-4 rounded-lg">
-        <div className="flex items-center gap-3 w-full md:w-auto justify-center">
+        <div className="flex items-center gap-4 w-full md:w-auto justify-center">
           <Link
             href="/"
             className="flex items-center gap-3 group relative md:mt-4 lg:mt-1"
@@ -50,7 +50,7 @@ async function Header() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               <Code2 className="w-4 h-4 relative z-10 group-hover:rotate-3 transition-transform" />
-              <span className="text-sm font-medium relative z-10 group-hover:text-white transition-colors">
+              <span className="text-sm hidden sm:block font-medium relative z-10 group-hover:text-white transition-colors">
                 Snippets
               </span>
             </Link>
@@ -59,8 +59,8 @@ async function Header() {
             <ThemeSelector />
           </div>
         </div>
-        <div className="flex items-center gap-4 mt-4 md:mt-4 lg:mt-1 w-full md:w-auto justify-center">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-4 md:mt-4 lg:mt-1 w-full md:w-auto justify-center">
+          <div className="flex items-center gap-3 w-auto">
             <LanguageSelector hasAccess={Boolean(convexUser?.isPro)} />
           </div>
           {!convexUser?.isPro && (
