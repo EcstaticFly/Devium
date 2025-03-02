@@ -3,13 +3,10 @@ import { v } from "convex/values";
 import { internalAction } from "./_generated/server";
 import { createHmac } from "crypto";
 
-const webhookSecret = process.env.PAYMENT_WEBHOOK_SIGNING_SECRET!
+const webhookSecret = process.env.PAYMENT_WEBHOOK_SIGNING_SECRET!;
 
 function verifySignature(payload: string, signature: string): boolean {
-  const hmac = createHmac(
-    "sha256",
-    webhookSecret
-  );
+  const hmac = createHmac("sha256", webhookSecret);
   const computedSignature = hmac.update(payload).digest("hex");
   return computedSignature === signature;
 }

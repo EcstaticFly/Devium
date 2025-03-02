@@ -93,7 +93,7 @@ http.route({
           email: data.attributes.user_email,
           proSubscriptionCustomerId: data.attributes.customer_id.toString(),
           proSubscriptionOrderId: data.id,
-        }); 
+        });
         //amount: data.attributes.total, (optional to add, as it is fixed and not really necessary), will also have to update schema then.
 
         if (success) {
