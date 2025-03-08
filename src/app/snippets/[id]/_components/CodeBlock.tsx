@@ -10,9 +10,9 @@ export default function CodeBlock({
   code: string;
 }) {
   const trimmedCode = code
-    .split("\n") //split into lines
-    .map((line) => line.trimEnd()) //remove trailing spaces from each line
-    .join("\n"); //join back into single string
+    .split("\n") 
+    .map((line) => line.trimEnd())
+    .join("\n");
 
   return (
     <div className="my-4 bg-[#0a0a0f] rounded-lg overflow-hidden border border-[#ffffff0a]">

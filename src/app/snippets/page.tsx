@@ -24,7 +24,6 @@ export default function SnippetsPage() {
   const [view, setView] = useState<"grid" | "list">("grid");
 
   if (allSnippets === undefined) {
-    //means data is being fetched from convex
     return (
       <div className="min-h-screen">
         <NavigationHeader />
@@ -43,7 +42,7 @@ export default function SnippetsPage() {
 
     const languageMatch = selectedLanguage
       ? snippet.language === selectedLanguage
-      : true; //if no selected language, return all snippets
+      : true;
 
     return searchMatch && languageMatch;
   });

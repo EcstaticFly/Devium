@@ -41,8 +41,8 @@ export default function ProfilePage() {
   const starredSnippets = useQuery(api.snippets.getStarredSnippets);
 
   const {
-    results: executions, //results as executions
-    status: executionStatus, //status as executionStatus
+    results: executions,
+    status: executionStatus, 
     loadMore,
     isLoading: isLoadingExecutions,
   } = usePaginatedQuery(

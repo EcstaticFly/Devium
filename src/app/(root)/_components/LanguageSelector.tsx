@@ -55,7 +55,7 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
         <div
           className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/5
         rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
-          aria-hidden="true" //not for screen readers
+          aria-hidden="true"
         />
 
         <div

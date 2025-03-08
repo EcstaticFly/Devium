@@ -61,14 +61,13 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     },
 
     setLanguage: (lang: string) => {
-      const currentCode = get().editor?.getValue(); // get current code from editor
+      const currentCode = get().editor?.getValue();
 
       if (currentCode) {
-        // if there's code in the editor
-        localStorage.setItem(`editor-code-${get().language}`, currentCode); // save code in local storage
+        localStorage.setItem(`editor-code-${get().language}`, currentCode);
       }
 
-      localStorage.setItem("editor-language", lang); //then switch to new language
+      localStorage.setItem("editor-language", lang);
       set({ language: lang, output: "", error: null });
     },
 

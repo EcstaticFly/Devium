@@ -18,7 +18,6 @@ function RunButton() {
     const result = getExecutionResult();
 
     if (user && result) {
-      // Save the code execution
       await saveExecution({
         code: result.code,
         language,

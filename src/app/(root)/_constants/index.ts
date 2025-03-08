@@ -7,7 +7,7 @@ type LanguageConfig = Record<
     id: string;
     label: string;
     logoPath: string;
-    pistonRuntime: { language: string; version: string }; // api that we're gonna be using
+    pistonRuntime: { language: string; version: string };
     monacoLanguage: string;
     defaultCode: string;
   }

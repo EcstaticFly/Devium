@@ -23,7 +23,6 @@ export default function SnippetDetailsPage() {
   });
 
   if (snippet === undefined) {
-    // snippet is undefined when the query is loading
     return <SnippetLoadingSkeleton />;
   }
   return (
