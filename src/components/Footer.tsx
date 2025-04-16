@@ -12,13 +12,22 @@ function Footer() {
             <span>Devium—Unleash Your Dev Potential.</span>
           </div>
           <div className="flex items-center gap-6">
-            <Link href="/support" className="text-gray-400 hover:text-gray-300 transition-colors">
+            <Link
+              href="/support"
+              className="text-gray-400 hover:text-gray-300 transition-colors"
+            >
               Support
             </Link>
-            <Link href="/privacy" className="text-gray-400 hover:text-gray-300 transition-colors">
+            <Link
+              href="/privacy"
+              className="text-gray-400 hover:text-gray-300 transition-colors"
+            >
               Privacy
             </Link>
-            <Link href="/terms" className="text-gray-400 hover:text-gray-300 transition-colors">
+            <Link
+              href="/terms"
+              className="text-gray-400 hover:text-gray-300 transition-colors"
+            >
               Terms
             </Link>
           </div>

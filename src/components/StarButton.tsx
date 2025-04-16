@@ -9,17 +9,17 @@ export default function StarButton({
 }: {
   snippetId: Id<"snippets">;
 }) {
-    const {isSignedIn} = useAuth();
-    const isStarred= useQuery(api.snippets.checkStarsOnSnippet,{snippetId});
-    const starCount= useQuery(api.snippets.getStarCountOnSnippet,{snippetId});
-    const star = useMutation(api.snippets.starSnippet);
+  const { isSignedIn } = useAuth();
+  const isStarred = useQuery(api.snippets.checkStarsOnSnippet, { snippetId });
+  const starCount = useQuery(api.snippets.getStarCountOnSnippet, { snippetId });
+  const star = useMutation(api.snippets.starSnippet);
 
-    const handleStar = async()=>{
-        if(!isSignedIn){
-            return;
-        }
-        await star({snippetId});
+  const handleStar = async () => {
+    if (!isSignedIn) {
+      return;
     }
+    await star({ snippetId });
+  };
 
   return (
     <button

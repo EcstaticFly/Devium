@@ -43,7 +43,8 @@ export default async function PricingPage() {
               </h1>
             </div>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Join the next generation of developers with our professional suite of tools
+              Join the next generation of developers with our professional suite
+              of tools
             </p>
           </div>
 
@@ -61,7 +62,9 @@ export default async function PricingPage() {
                     <feature.icon className="size-6 text-blue-400" />
                   </div>
 
-                  <h3 className="text-lg font-medium text-white mb-2">{feature.label}</h3>
+                  <h3 className="text-lg font-medium text-white mb-2">
+                    {feature.label}
+                  </h3>
                   <p className="text-gray-400">{feature.desc}</p>
                 </div>
               </div>
@@ -85,7 +88,9 @@ export default async function PricingPage() {
                   <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 ring-1 ring-gray-800/60 mb-6">
                     <Star className="size-8 text-blue-400" />
                   </div>
-                  <h2 className="text-3xl font-semibold text-white mb-4">Lifetime Pro Access</h2>
+                  <h2 className="text-3xl font-semibold text-white mb-4">
+                    Lifetime Pro Access
+                  </h2>
                   <div className="flex items-baseline justify-center gap-2 mb-4">
                     <span className="text-2xl text-gray-400">₹</span>
                     <span className="text-6xl font-semibold bg-gradient-to-r from-gray-100 to-gray-300 text-transparent bg-clip-text">
@@ -93,7 +98,9 @@ export default async function PricingPage() {
                     </span>
                     <span className="text-xl text-gray-400">one-time</span>
                   </div>
-                  <p className="text-gray-400 text-lg">Unlock the full potential of Devium</p>
+                  <p className="text-gray-400 text-lg">
+                    Unlock the full potential of Devium
+                  </p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-12 mb-12">
